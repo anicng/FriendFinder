@@ -2,6 +2,8 @@ var express = require("express");
 var $ = require("jquery");
 var path = require("path");
 var fs = require("fs");
+const quesions = require('./questions.js');
+
 
 var PORT = 3000;
 var app = express();
@@ -19,28 +21,13 @@ app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
 });
 
-var questions = [{
-        question: "Your mind is always buzzing with unexplored ideas and plans.",
-        answer: ["1(Strongly Disagree)", "2", "3", "4", "5(Strongly Agree)"]
-    },
-    {
-        question: "Generally speaking, you rely more on your experience than your imagination.",
-        answer: ["1(Strongly Disagree)", "2", "3", "4", "5(Strongly Agree)"]
-    },
-    {
-        question: ".",
-        answer: ["1(Strongly Disagree)", "2", "3", "4", "5(Strongly Agree)"]
-    }
-]
+// Dynamically display quesions from questions.js file
+// app.use(express.static('public'));
 
-var survey = $("#questions-area");
+// app.get('/', (req, res) => {
+//     res.sendFile('home.html');
+// });
 
-function displayQuestions() {
-    for (var i = 0; i < questions.length; i++) {
-        survey.append("<h2>" + questions[i].question + "</h2>");
-        for (var j = 0; j < questions[i].answers.length; j++) {
-            survey.append("<option>" + questions[i].answers[j] +
-                "</option>");
-        }
-    }
-};
+// app.get('/api/data', (req, res) => {
+//     res.send(questions);
+// });

@@ -22,17 +22,17 @@
         <hr>
         <form class="survey">
             <h2>About You</h2>
-            <div class="form-group">
+            <div class="form-group" id="nameDiv">
                 <label for="name">Name (Required) </label>
                 <input type="text" class="form-control" id="name-input" placeholder="Enter your name">
             </div>
-            <div class="form-group">
-                <label for="photoLink">Link to Photo Image (Required) </label>
-                <input type="url" class="form-control" id="photo-link">
+            <div class="form-group" id="imgDiv">
+                <label for="imgLink">Link to Photo Image (Required) </label>
+                <input type="url" class="form-control" id="img-link">
             </div>
             <hr>
-            <div id="questions-area">
-                
+            <div id="questionsDiv">
+
             </div>
             <!-- Question 1  -->
             <div class="form-group">
@@ -64,8 +64,7 @@
                     <option>5(Strongly Agree)</option>
                 </select>
             </div>
-
-
+            <input class="btn btn-primary" type="submit" value="Submit" id="submitBtn">
 
         </form>
         <hr>
@@ -75,7 +74,26 @@
         </footer>
     </div>
 
+    <script src="questions.js"></script>
+    <script>
 
+        $("#submitBtn").on('click', function () {
+            // if (nameValid && phoneValid && emailValid && idValid) {
+            var newFriend = {
+                name: $("#name-input").val().trim(),
+                image: $("#img-link").val().trim(),
+            };
+
+            $.post("../data/friends.js", newFriend)
+                .then(function (data) {
+                    console.log(data);
+                    console.log("survey.html", data);
+                });
+            // }
+        })
+
+
+    </script>
 </body>
 
 </html>
